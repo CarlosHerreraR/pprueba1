@@ -1,5 +1,5 @@
 #include "Pelicula.h"
-
+#include <string>
 Pelicula::Pelicula(string p_id, string p_nombre, int p_duracion, float p_calificacion, string p_fecha_estreno, string p_genero) : Video(p_id, p_nombre, p_duracion, p_calificacion, p_fecha_estreno), Consultas()
 {
     pelicula_genero = p_genero;
@@ -10,8 +10,10 @@ string Pelicula::PeliculaGenero() {
 }
 
 string Pelicula::PeliculaNombre() {
-    return nombre + "-" + id;
+    return nombre;
 }
+
+
 
 void Pelicula::VideosporGenero(string p_pelicula_genero)
 {

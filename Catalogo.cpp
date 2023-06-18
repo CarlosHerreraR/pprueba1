@@ -117,47 +117,16 @@ void Catalogo::CargaVideos() {
 }
 
 void Catalogo::VerTodo() {
+    cout << "⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ Peliculas ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆" << endl << endl;
+    for (const auto& pelicula : vPeliculas) {
+        cout << "⋆ " << pelicula->PeliculaNombre() << endl;
+    }
+
+    cout << endl << "⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ Series ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆" << endl << endl;
+    for (const auto& serie : vSeries) {
+        cout << "⋆ " << serie->SerieNombre() << endl;
+    }
     
-    cout << "⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ PELICULAS ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆" << endl;
-
-  
-
-    /*for (const auto& elemento : vPeliculas) {
-        cout << elemento->PeliculaNombre();
-        //cout << elemento.nombre;
-    }*/
-
-    /*for (std::size_t index = 0; index < vPeliculas.size(); ++index)
-    {
-            cout << *vPeliculas[index].nombre << " ";
-    }*/
-
-
-/*    for (auto iterP = vPeliculas.begin(); iterP != vPeliculas.end(); ++iterP) 
-    {
-          std::cout << "Nombre: " << (*iterP) -> nombre << std::endl;
-    }*/
-
-
-    /*vector<Pelicula*>::iterator iterP = vPeliculas.begin();
-    for(iterP; iterP < vPeliculas.end(); iterP++) 
-    {
-        cout << "Nombre: " << (*iterP) -> nombre << endl;
-        cout << "ID: " << (*iterP) -> id << endl;
-        cout << "Género: " << (*iterP) -> pelicula_genero<< endl;
-        cout << "Calificación: " << (*iterP) -> calificacion<< endl;
-        cout << "Duración: " << (*iterP) -> duracion << " minutos" << endl;
-        cout << endl;
-    }*/
-
-    /*cout << "⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆ SERIES ⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆⋆" << endl << endl;
-    vector<Serie*>::iterator iterS = vSeries.begin();
-    for(iterS; iterS < vSeries.end(); iterS++)
-    {
-        cout << "Nombre: " << (*iterS) -> serie_nombre << endl;
-        cout << "Género: " << (*iterS) -> serie_genero << endl;
-        cout << endl;
-    }*/
 }
 
 
@@ -174,10 +143,12 @@ void Catalogo::VideosporCalificacion() {
     for(int i=0; i<vSeries.size(); i++)
     {
         vSeries[i]->VideosporCalificacion(iCalificacion);
+        
     }
     for(int i=0; i<vPeliculas.size(); i++)
     {
         vPeliculas[i]->VideosporCalificacion(iCalificacion);
+       
     }
 }
 
@@ -276,7 +247,7 @@ void Catalogo::CalificarVideo() {
 
     for(int i=0; i<vSeries.size(); i++)
     {
-        if ( vSeries[i]->EpisodioNombre(sNombre) == sNombre )
+        if ( vSeries[i]->EpisodioNombre(sNombre) == sNombre || vSeries[i]->SerieNombre() == sNombre)
             bExisteVideo = true;
     }
 
@@ -288,7 +259,7 @@ void Catalogo::CalificarVideo() {
             cin >> iCalificacion;
             cin.clear();            //LIMPIA EL INDICADOR DE ERROR, SI TECLEA UN VALOR DIFERENTE A NUMERO
             cin.ignore(1000,'\n');  //BORRA UNO O MAS CARACTERES DEL BUFFER, \N ES EL DELIMITADOR O CARACTER FINAL DE ENTRADA
-            if (iCalificacion == 0)
+            if (iCalificacion == 0 || iCalificacion<0 || iCalificacion>10)
             {
                 system("clear");
                 throw std::runtime_error("Error, captura una calificacion correcta.");

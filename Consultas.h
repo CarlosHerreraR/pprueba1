@@ -12,7 +12,6 @@ class Consultas
         virtual void VideosporCalificacion(float p_calificacion)=0;
         virtual void EpisodiosPorSerie(string p_serie_nombre)=0;
         virtual void PeliculasporCalificacion(float p_calificacion)=0;
-
         virtual string PeliculaNombre()=0;
         virtual string PeliculaGenero()=0;
         virtual string SerieGenero()=0;

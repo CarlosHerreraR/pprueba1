@@ -9,7 +9,7 @@ class Video{
     
     public:
         string id;
-        string nombre;
+        string nombre; 
         int duracion;
         float calificacion;
         int totalCalificaciones;
